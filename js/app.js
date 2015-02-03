@@ -10,7 +10,13 @@
             price: 2.95,
             description: '...',
             canPurchase: true,
-            soldOut:false
+            soldOut:false,
+            images: [
+                {
+                    full: 'dodecahedron-01-full.jpg',
+                    thumb: 'dodecahedron-01-thumb.jpg'
+                }
+            ]
         },
         {
             name: 'Pentagonal Gem',
