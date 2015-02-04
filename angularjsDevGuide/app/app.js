@@ -1,24 +1,17 @@
 //(function(angular) {
-    angular.module('invoice1',[]).controller('InvoiceController',function(){
+    angular.module('invoice1',['finance'])
+    .controller('InvoiceController',['currencyConverter', function(currencyConverter){
         this.qty = 1;
         this.cost = 2;
         this.inCurr = 'EUR';
-        this.currencies = ['USD', 'EUR', 'CNY'];
-        this.usdToForeignRates = {
-            USD: 1,
-            EUR:0.74,
-            CNY:6.09
+        this.currencies = currencyConverter.currencies;
+        this.pay = function pay(){
+            window.alert('Thanks!');
         };
-        this.total = function(currcyTgt){
+        this.total = function total(currcyTgt){
             var totalValue = this.qty*this.cost;
-            return this.transferCurrency(totalValue, this.inCurr, currcyTgt);
+            return currencyConverter.convert(totalValue, this.inCurr, currcyTgt);
         };
-        this.transferCurrency = function(curcyValue, incurr, currcyTgt){
-            //change currency Src to currcyTgt
-            return (curcyValue/this.usdToForeignRates[incurr])*this.usdToForeignRates[currcyTgt];
-        };
-        this.pay = function(){
-            alert("Thanks!");
-        };
-    });
+
+    }]);
 //})(window.angular);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="invoice1">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-    <!-- a example of data binding -->
-    <div ng-init="qty =1; cost=2" ng-controller="InvoiceController as invoice">
+    <div ng-app="invoice1" ng-controller="InvoiceController as invoice">
         <b>Invoice:</b>
         <div>
             Quantity: <input type="number" min="0" ng-model="invoice.qty" required>
@@ -16,16 +15,18 @@
         <div>
             Costs: <input type="number" min="0" ng-model="invoice.cost" required>
             <select ng-model="invoice.inCurr">
-                <option ng-repeat="currency in invoice.currencies">{{currency}}</option>
+                <option ng-repeat="c in invoice.currencies">{{c}}</option>
             </select>
         </div>
         <div><b>Total:</b> 
-         <span ng-repeat="currency in invoice.currencies">{{invoice.total(currency)|currency:currency}}
+         <span ng-repeat="c in invoice.currencies">{{invoice.total(c)|currency:c}}
          </span>
          <button ng-click="invoice.pay()">Pay</button>
         </div>
     </div>
+</div>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
     <script src="app.js"></script>
+    <script src="finance.js"></script>
 </body>
 </html>
